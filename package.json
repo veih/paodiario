@@ -27,6 +27,7 @@
     "@types/express": "^5.0.6",
     "@types/react": "^19.2.14",
     "@types/react-native": "^0.72.8",
+    "@vercel/node": "^5.7.10",
     "concurrently": "^9.2.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
