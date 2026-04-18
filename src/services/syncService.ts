@@ -17,6 +17,31 @@ async function fetchChapterFromServer(
   chapter: number,
   translation: string = 'acf'
 ): Promise<ChapterData> {
+  // Try static data first (for Vercel deployment)
+  try {
+    const staticResponse = await fetch(`/data/${bookId}_${chapter}.json`);
+    if (staticResponse.ok) {
+      return await staticResponse.json() as ChapterData;
+    }
+  } catch {
+    // Static file not found, fall back to API
+  }
+
+  // Fall back to local API or external API
+  const isVercel = typeof window !== 'undefined' && window.location.hostname.includes('vercel.app');
+  
+  if (isVercel) {
+    // Use external API directly on Vercel
+    const response = await fetch(
+      `https://bible-api.com/${bookId.toUpperCase()}+${chapter}?translation=almeida`
+    );
+    if (!response.ok) {
+      throw new Error('Failed to fetch chapter');
+    }
+    return await response.json() as ChapterData;
+  }
+
+  // Use local proxy server
   const response = await fetch(
     `${API_BASE_URL}/bible/${bookId}/${chapter}?translation=${translation}`
   );
