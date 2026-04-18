@@ -1,0 +1,17 @@
+{
+  "genesis_1": "genesis_1.json",
+  "genesis_2": "genesis_2.json",
+  "genesis_3": "genesis_3.json",
+  "psalms_1": "psalms_1.json",
+  "psalms_23": "psalms_23.json",
+  "psalms_91": "psalms_91.json",
+  "psalms_119": "psalms_119.json",
+  "john_3": "john_3.json",
+  "john_1": "john_1.json",
+  "romans_1": "romans_1.json",
+  "romans_8": "romans_8.json",
+  "matthew_5": "matthew_5.json",
+  "matthew_6": "matthew_6.json",
+  "matthew_7": "matthew_7.json",
+  "revelation_1": "revelation_1.json"
+}

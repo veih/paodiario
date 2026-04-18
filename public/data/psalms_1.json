@@ -1,0 +1,51 @@
+{
+  "reference": "Salmos 1",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 1,
+      "verse": 1,
+      "text": "Bem-aventurado o homem que não anda segundo o conselho dos ímpios, nem se detém no caminho dos pecadores, nem se assenta na roda dos escarnecedores;   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 1,
+      "verse": 2,
+      "text": "antes tem seu prazer na lei do Senhor, e na sua lei medita de dia e noite.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 1,
+      "verse": 3,
+      "text": "Pois será como a árvore plantada junto às correntes de águas, a qual dá o seu fruto na estação própria, e cuja folha não cai; e tudo quanto fizer prosperará.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 1,
+      "verse": 4,
+      "text": "Não são assim os ímpios, mas são semelhantes à moinha que o vento espalha.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 1,
+      "verse": 5,
+      "text": "Pelo que os ímpios não subsistirão no juízo, nem os pecadores na congregação dos justos;   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 1,
+      "verse": 6,
+      "text": "porque o Senhor conhece o caminho dos justos, mas o caminho dos ímpios conduz à ruína.   "
+    }
+  ],
+  "text": "Bem-aventurado o homem que não anda segundo o conselho dos ímpios, nem se detém no caminho dos pecadores, nem se assenta na roda dos escarnecedores;   antes tem seu prazer na lei do Senhor, e na sua lei medita de dia e noite.   Pois será como a árvore plantada junto às correntes de águas, a qual dá o seu fruto na estação própria, e cuja folha não cai; e tudo quanto fizer prosperará.   Não são assim os ímpios, mas são semelhantes à moinha que o vento espalha.   Pelo que os ímpios não subsistirão no juízo, nem os pecadores na congregação dos justos;   porque o Senhor conhece o caminho dos justos, mas o caminho dos ímpios conduz à ruína.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}
