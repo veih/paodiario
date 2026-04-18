@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const srcDir = path.join(process.cwd(), 'public', 'data');
+const srcDir = path.join(process.cwd(), 'data');
 const destDir = path.join(process.cwd(), 'dist', 'data');
 
 function copyRecursive(src, dest) {
