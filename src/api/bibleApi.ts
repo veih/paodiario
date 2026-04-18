@@ -1,8 +1,6 @@
 // API service for Bible data in Portuguese
-// Using the Bible API (bible-api.com) which supports Portuguese
-// Now with local SQLite database support for offline access
-
-import { syncChapter } from '../services/syncService';
+// Using static JSON files from /data/ directory
+// Falls back to external API if static data not available
 
 // Type definitions
 export interface BibleTranslation {
@@ -165,16 +163,33 @@ export const getAllBooks = (): BibleBook[] => {
   return [...BIBLE_BOOKS.oldTestament, ...BIBLE_BOOKS.newTestament];
 };
 
-// Fetch a specific chapter from the Bible API
-// Uses local database first, falls back to API if not cached
+// Fetch a specific chapter from static data
+// Uses local /data/ JSON files first, falls back to external API if not available
 export const fetchChapter = async (
   bookId: string,
   chapter: number,
   translation: string = 'acf'
 ): Promise<ChapterData> => {
   try {
-    // Try to get from local database first (will sync from API if not available)
-    return await syncChapter(bookId, chapter, translation);
+    // Try to get from static data first
+    const staticResponse = await fetch(`/data/${bookId}_${chapter}.json`);
+    if (staticResponse.ok) {
+      console.log(`Loaded ${bookId}_${chapter} from static data`);
+      return await staticResponse.json() as ChapterData;
+    }
+  } catch (error) {
+    console.warn(`Static file not found for ${bookId}_${chapter}, falling back to API`);
+  }
+
+  // Fall back to external API
+  try {
+    const response = await fetch(
+      `https://bible-api.com/${bookId.toUpperCase()}+${chapter}?translation=almeida`
+    );
+    if (!response.ok) {
+      throw new Error('Failed to fetch chapter from API');
+    }
+    return await response.json() as ChapterData;
   } catch (error) {
     console.error('Error fetching chapter:', error);
     throw error;
