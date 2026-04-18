@@ -1,12 +1,30 @@
 {
-    "buildCommand": "npx expo export --platform web && node -e \"const fs=require('fs'),path=require('path');const src=path.join('public','data'),dest=path.join('dist','data');if(!fs.existsSync(dest))fs.mkdirSync(dest,{recursive:true});fs.readdirSync(src).forEach(f=>fs.copyFileSync(path.join(src,f),path.join(dest,f)));console.log('Copied',fs.readdirSync(dest).length,'files');\"",
-    "outputDirectory": "dist",
-    "installCommand": "npm install",
-    "framework": null,
-    "rewrites": [
+    "version": 2,
+    "builds": [
         {
-            "source": "/api/bible/([^/]+)/([^/]+)",
-            "destination": "/api/bible/$1/$2"
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "dist",
+                "buildCommand": "rm -rf dist && npx expo export --platform web && node -e \"const fs=require('fs'),path=require('path');const src=path.join('public','data'),dest=path.join('dist','data');if(!fs.existsSync(dest))fs.mkdirSync(dest,{recursive:true});fs.readdirSync(src).forEach(f=>fs.copyFileSync(path.join(src,f),path.join(dest,f)));console.log('Copied',fs.readdirSync(dest).length,'files');\""
+            }
+        },
+        {
+            "src": "api/**/*.ts",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "/api/$1"
+        },
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
         }
     ]
 }
