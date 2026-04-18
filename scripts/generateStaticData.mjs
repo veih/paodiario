@@ -60,10 +60,27 @@ async function fetchChapter(bookId, chapter) {
     }
 }
 
+async function copyDir(src, dest) {
+    if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+    }
+    const entries = fs.readdirSync(src, { withFileTypes: true });
+    for (const entry of entries) {
+        const srcPath = path.join(src, entry.name);
+        const destPath = path.join(dest, entry.name);
+        if (entry.isDirectory()) {
+            await copyDir(srcPath, destPath);
+        } else {
+            fs.copyFileSync(srcPath, destPath);
+        }
+    }
+}
+
 async function generateStaticData() {
     const dataDir = path.join(process.cwd(), 'public', 'data');
+    const distDataDir = path.join(process.cwd(), 'dist', 'data');
 
-    // Create directory if not exists
+    // Create directories if not exists
     if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir, { recursive: true });
     }
@@ -94,6 +111,13 @@ async function generateStaticData() {
     );
 
     console.log(`\n✓ Generated ${Object.keys(index).length} chapters in public/data/`);
+
+    // Also copy to dist if it exists (for Vercel deployment)
+    if (fs.existsSync(path.join(process.cwd(), 'dist'))) {
+        console.log('\nCopying data to dist folder...');
+        await copyDir(dataDir, distDataDir);
+        console.log('✓ Data copied to dist/data/');
+    }
 }
 
 generateStaticData().catch(console.error);

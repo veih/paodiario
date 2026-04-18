@@ -1,5 +1,5 @@
 {
-    "buildCommand": "node scripts/generateStaticData.mjs && npx expo export --platform web && cp -r public/data dist/",
+    "buildCommand": "npx expo export --platform web && node scripts/generateStaticData.mjs",
     "outputDirectory": "dist",
     "installCommand": "npm install",
     "framework": null
