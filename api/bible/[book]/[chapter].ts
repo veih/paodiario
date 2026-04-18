@@ -1,5 +1,7 @@
-import { sql } from '@vercel/postgres';
+import { PrismaClient } from '@prisma/client';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+
+const prisma = new PrismaClient();
 
 export default async function handler(
   request: VercelRequest,
@@ -9,18 +11,22 @@ export default async function handler(
   const translation = (request.query.translation as string) || 'acf';
 
   try {
-    // Try to get from database first
-    const result = await sql`
-      SELECT v.verse, v.text, b.name as book_name, b.id as book_id
-      FROM verses v
-      JOIN books b ON v.book_id = b.id
-      WHERE b.id = ${book as string} 
-        AND v.chapter = ${parseInt(chapter as string)}
-        AND v.translation_id = ${translation}
-      ORDER BY v.verse
-    `;
+    // Try to get from database using Prisma
+    const verses = await prisma.verse.findMany({
+      where: {
+        bookId: book as string,
+        chapter: parseInt(chapter as string),
+        translationId: translation,
+      },
+      include: {
+        book: true,
+      },
+      orderBy: {
+        verse: 'asc',
+      },
+    });
 
-    if (result.rows.length === 0) {
+    if (verses.length === 0) {
       // If not in database, fetch from external API
       const apiResponse = await fetch(
         `https://bible-api.com/${(book as string).toUpperCase()}+${chapter}?translation=almeida`
@@ -35,18 +41,18 @@ export default async function handler(
     }
 
     // Format response from database
-    const verses = result.rows.map((row: any) => ({
-      book_id: row.book_id.toUpperCase(),
-      book_name: row.book_name,
+    const formattedVerses = verses.map((v) => ({
+      book_id: v.bookId.toUpperCase(),
+      book_name: v.book.name,
       chapter: parseInt(chapter as string),
-      verse: row.verse,
-      text: row.text,
+      verse: v.verse,
+      text: v.text,
     }));
 
     return response.status(200).json({
-      reference: `${result.rows[0].book_name} ${chapter}`,
-      verses,
-      text: verses.map((v: any) => v.text).join(' '),
+      reference: `${verses[0].book.name} ${chapter}`,
+      verses: formattedVerses,
+      text: formattedVerses.map((v) => v.text).join(' '),
       translation_id: translation,
       translation_name: 'Almeida Corrigida e Fiel',
       translation_note: 'Portuguese',
@@ -69,5 +75,7 @@ export default async function handler(
     } catch (apiError) {
       return response.status(500).json({ error: 'Failed to fetch chapter' });
     }
+  } finally {
+    await prisma.$disconnect();
   }
 }

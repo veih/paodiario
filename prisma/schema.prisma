@@ -1,0 +1,39 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Translation {
+    id           String  @id @db.VarChar(10)
+    name         String  @db.VarChar(100)
+    abbreviation String  @db.VarChar(20)
+    language     String  @db.VarChar(10)
+    verses       Verse[]
+}
+
+model Book {
+    id        String  @id @db.VarChar(50)
+    name      String  @db.VarChar(100)
+    testament String  @db.VarChar(10)
+    chapters  Int
+    verses    Verse[]
+}
+
+model Verse {
+    id            Int         @id @default(autoincrement())
+    bookId        String      @map("book_id") @db.VarChar(50)
+    chapter       Int
+    verse         Int
+    text          String      @db.Text
+    translationId String      @map("translation_id") @db.VarChar(10)
+    book          Book        @relation(fields: [bookId], references: [id])
+    translation   Translation @relation(fields: [translationId], references: [id])
+
+    @@unique([bookId, chapter, verse, translationId])
+    @@index([bookId, chapter])
+    @@index([translationId])
+}
