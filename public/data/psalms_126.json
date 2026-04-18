@@ -1,0 +1,51 @@
+{
+  "reference": "Salmos 126",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 126,
+      "verse": 1,
+      "text": "Quando o Senhor trouxe do cativeiro os que voltaram a Sião, éramos como os que estão sonhando.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 126,
+      "verse": 2,
+      "text": "Então a nossa boca se encheu de riso e a nossa língua de cânticos. Então se dizia entre as nações: Grandes coisas fez o Senhor por eles.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 126,
+      "verse": 3,
+      "text": "Sim, grandes coisas fez o Senhor por nós, e por isso estamos alegres.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 126,
+      "verse": 4,
+      "text": "Faze regressar os nossos cativos, Senhor, como as correntes no sul.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 126,
+      "verse": 5,
+      "text": "Os que semeiam em lágrimas, com cânticos de júbilo segarão.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 126,
+      "verse": 6,
+      "text": "Aquele que sai chorando, levando a semente para semear, voltará com cânticos de júbilo, trazendo consigo os seus molhos.   "
+    }
+  ],
+  "text": "Quando o Senhor trouxe do cativeiro os que voltaram a Sião, éramos como os que estão sonhando.   Então a nossa boca se encheu de riso e a nossa língua de cânticos. Então se dizia entre as nações: Grandes coisas fez o Senhor por eles.   Sim, grandes coisas fez o Senhor por nós, e por isso estamos alegres.   Faze regressar os nossos cativos, Senhor, como as correntes no sul.   Os que semeiam em lágrimas, com cânticos de júbilo segarão.   Aquele que sai chorando, levando a semente para semear, voltará com cânticos de júbilo, trazendo consigo os seus molhos.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

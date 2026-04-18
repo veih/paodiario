@@ -1,0 +1,51 @@
+{
+  "reference": "Salmos 150",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 150,
+      "verse": 1,
+      "text": "Louvai ao Senhor! Louvai a Deus no seu santuário; louvai-o no firmamento do seu poder!   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 150,
+      "verse": 2,
+      "text": "Louvai-o pelos seus atos poderosos; louvai-o conforme a excelência da sua grandeza!   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 150,
+      "verse": 3,
+      "text": "Louvai-o ao som de trombeta; louvai-o com saltério e com harpa!   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 150,
+      "verse": 4,
+      "text": "Louvai-o com adufe e com danças; louvai-o com instrumentos de cordas e com flauta!   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 150,
+      "verse": 5,
+      "text": "Louvai-o com címbalos sonoros; louvai-o com címbalos altissonantes!   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 150,
+      "verse": 6,
+      "text": "Tudo quanto tem fôlego louve ao Senhor. Louvai ao Senhor!   "
+    }
+  ],
+  "text": "Louvai ao Senhor! Louvai a Deus no seu santuário; louvai-o no firmamento do seu poder!   Louvai-o pelos seus atos poderosos; louvai-o conforme a excelência da sua grandeza!   Louvai-o ao som de trombeta; louvai-o com saltério e com harpa!   Louvai-o com adufe e com danças; louvai-o com instrumentos de cordas e com flauta!   Louvai-o com címbalos sonoros; louvai-o com címbalos altissonantes!   Tudo quanto tem fôlego louve ao Senhor. Louvai ao Senhor!   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

@@ -1,0 +1,58 @@
+{
+  "reference": "Salmos 110",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 110,
+      "verse": 1,
+      "text": "Disse o Senhor ao meu Senhor: Assenta-te à minha direita, até que eu ponha os teus inimigos por escabelo dos teus pés.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 110,
+      "verse": 2,
+      "text": "O Senhor enviará de Sião o cetro do teu poder. Domina no meio dos teus inimigos.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 110,
+      "verse": 3,
+      "text": "O teu povo apresentar-se-á voluntariamente no dia do teu poder, em trajes santos; como vindo do próprio seio da alva, será o orvalho da tua mocidade.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 110,
+      "verse": 4,
+      "text": "Jurou o Senhor, e não se arrependerá: Tu és sacerdote para sempre, segundo a ordem de Melquisedeque.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 110,
+      "verse": 5,
+      "text": "O Senhor, à tua direita, quebrantará reis no dia da sua ira.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 110,
+      "verse": 6,
+      "text": "Julgará entre as nações; enchê-las-á de cadáveres; quebrantará os cabeças por toda a terra.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 110,
+      "verse": 7,
+      "text": "Pelo caminho beberá da corrente, e prosseguirá de cabeça erguida.   "
+    }
+  ],
+  "text": "Disse o Senhor ao meu Senhor: Assenta-te à minha direita, até que eu ponha os teus inimigos por escabelo dos teus pés.   O Senhor enviará de Sião o cetro do teu poder. Domina no meio dos teus inimigos.   O teu povo apresentar-se-á voluntariamente no dia do teu poder, em trajes santos; como vindo do próprio seio da alva, será o orvalho da tua mocidade.   Jurou o Senhor, e não se arrependerá: Tu és sacerdote para sempre, segundo a ordem de Melquisedeque.   O Senhor, à tua direita, quebrantará reis no dia da sua ira.   Julgará entre as nações; enchê-las-á de cadáveres; quebrantará os cabeças por toda a terra.   Pelo caminho beberá da corrente, e prosseguirá de cabeça erguida.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

@@ -1,0 +1,58 @@
+{
+  "reference": "Salmos 54",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 54,
+      "verse": 1,
+      "text": "Salva-me, ó Deus, pelo teu nome, e faze-me justiça pelo teu poder.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 54,
+      "verse": 2,
+      "text": "Ó Deus, ouve a minha oração, dá ouvidos às palavras da minha boca.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 54,
+      "verse": 3,
+      "text": "Porque homens insolentes se levantam contra mim, e violentos procuram a minha vida; eles não põem a Deus diante de si.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 54,
+      "verse": 4,
+      "text": "Eis que Deus é o meu ajudador; o Senhor é quem sustenta a minha vida.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 54,
+      "verse": 5,
+      "text": "Faze recair o mal sobre os meus inimigos; destrói-os por tua verdade.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 54,
+      "verse": 6,
+      "text": "De livre vontade te oferecerei sacrifícios; louvarei o teu nome, ó Senhor, porque é bom.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 54,
+      "verse": 7,
+      "text": "Porque tu me livraste de toda a angústia; e os meus olhos viram a ruína dos meus inimigos.   "
+    }
+  ],
+  "text": "Salva-me, ó Deus, pelo teu nome, e faze-me justiça pelo teu poder.   Ó Deus, ouve a minha oração, dá ouvidos às palavras da minha boca.   Porque homens insolentes se levantam contra mim, e violentos procuram a minha vida; eles não põem a Deus diante de si.   Eis que Deus é o meu ajudador; o Senhor é quem sustenta a minha vida.   Faze recair o mal sobre os meus inimigos; destrói-os por tua verdade.   De livre vontade te oferecerei sacrifícios; louvarei o teu nome, ó Senhor, porque é bom.   Porque tu me livraste de toda a angústia; e os meus olhos viram a ruína dos meus inimigos.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

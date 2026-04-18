@@ -1,0 +1,37 @@
+{
+  "reference": "Salmos 123",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 123,
+      "verse": 1,
+      "text": "A ti levanto os meus olhos, ó tu que estás entronizado nos céus.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 123,
+      "verse": 2,
+      "text": "Eis que assim como os olhos dos servos atentam para a mão do seu senhor, e os olhos da serva para a mão de sua senhora, assim os nossos olhos atentam para o Senhor nosso Deus, até que ele se compadeça de nós.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 123,
+      "verse": 3,
+      "text": "Compadece-te de nós, ó Senhor, compadece-te de nós, pois estamos sobremodo fartos de desprezo.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 123,
+      "verse": 4,
+      "text": "A nossa alma está sobremodo farta da zomabaria dos arrogantes, e do desprezo dos soberbos.   "
+    }
+  ],
+  "text": "A ti levanto os meus olhos, ó tu que estás entronizado nos céus.   Eis que assim como os olhos dos servos atentam para a mão do seu senhor, e os olhos da serva para a mão de sua senhora, assim os nossos olhos atentam para o Senhor nosso Deus, até que ele se compadeça de nós.   Compadece-te de nós, ó Senhor, compadece-te de nós, pois estamos sobremodo fartos de desprezo.   A nossa alma está sobremodo farta da zomabaria dos arrogantes, e do desprezo dos soberbos.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

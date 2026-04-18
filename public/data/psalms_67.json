@@ -1,0 +1,58 @@
+{
+  "reference": "Salmos 67",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 67,
+      "verse": 1,
+      "text": "Deus se compadeça de nós e nos abençoe, e faça resplandecer o seu rosto sobre nós,   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 67,
+      "verse": 2,
+      "text": "para que se conheça na terra o seu caminho e entre todas as nações a sua salvação.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 67,
+      "verse": 3,
+      "text": "Louvem-te, ó Deus, os povos; louvem-te os povos todos.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 67,
+      "verse": 4,
+      "text": "Alegrem-se e regozijem-se as nações, pois julgas os povos com eqüidade, e guias as nações sobre a terra.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 67,
+      "verse": 5,
+      "text": "Louvem-te, ó Deus, os povos; louvem os povos todos.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 67,
+      "verse": 6,
+      "text": "A terra tem produzido o seu fruto; e Deus, o nosso Deus, tem nos abençoado.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 67,
+      "verse": 7,
+      "text": "Deus nos tem abençoado; temam-no todas as extremidades da terra!   "
+    }
+  ],
+  "text": "Deus se compadeça de nós e nos abençoe, e faça resplandecer o seu rosto sobre nós,   para que se conheça na terra o seu caminho e entre todas as nações a sua salvação.   Louvem-te, ó Deus, os povos; louvem-te os povos todos.   Alegrem-se e regozijem-se as nações, pois julgas os povos com eqüidade, e guias as nações sobre a terra.   Louvem-te, ó Deus, os povos; louvem os povos todos.   A terra tem produzido o seu fruto; e Deus, o nosso Deus, tem nos abençoado.   Deus nos tem abençoado; temam-no todas as extremidades da terra!   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

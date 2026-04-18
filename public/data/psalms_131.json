@@ -1,0 +1,30 @@
+{
+  "reference": "Salmos 131",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 131,
+      "verse": 1,
+      "text": "Senhor, o meu coração não é soberbo, nem os meus olhos são altivos; não me ocupo de assuntos grandes e maravilhosos demais para mim.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 131,
+      "verse": 2,
+      "text": "Pelo contrário, tenho feito acalmar e sossegar a minha alma; qual criança desmamada sobre o seio de sua mãe, qual criança desmamada está a minha alma para comigo.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 131,
+      "verse": 3,
+      "text": "Espera, ó Israel, no Senhor, desde agora e para sempre.   "
+    }
+  ],
+  "text": "Senhor, o meu coração não é soberbo, nem os meus olhos são altivos; não me ocupo de assuntos grandes e maravilhosos demais para mim.   Pelo contrário, tenho feito acalmar e sossegar a minha alma; qual criança desmamada sobre o seio de sua mãe, qual criança desmamada está a minha alma para comigo.   Espera, ó Israel, no Senhor, desde agora e para sempre.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

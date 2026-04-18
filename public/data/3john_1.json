@@ -1,0 +1,16 @@
+{
+  "reference": "3 João 1:1",
+  "verses": [
+    {
+      "book_id": "3JN",
+      "book_name": "3 João",
+      "chapter": 1,
+      "verse": 1,
+      "text": "O ancião ao amado Gaio, a quem eu amo em verdade.   "
+    }
+  ],
+  "text": "O ancião ao amado Gaio, a quem eu amo em verdade.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

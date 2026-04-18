@@ -1,0 +1,65 @@
+{
+  "reference": "Salmos 12",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 1,
+      "text": "Salva-nos, Senhor, pois não existe mais o piedoso; os fiéis desapareceram dentre os filhos dos homens.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 2,
+      "text": "Cada um fala com falsidade ao seu próximo; falam com lábios lisonjeiros e coração dobre.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 3,
+      "text": "Corte o Senhor todos os lábios lisonjeiros e a língua que fala soberbamente,   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 4,
+      "text": "os que dizem: Com a nossa língua prevaleceremos; os nossos lábios a nós nos pertecem; quem sobre nós é senhor?   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 5,
+      "text": "Por causa da opressão dos pobres, e do gemido dos necessitados, levantar-me-ei agora, diz o Senhor; porei em segurança quem por ela suspira.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 6,
+      "text": "As palavras do Senhor são palavras puras, como prata refinada numa fornalha de barro, purificada sete vezes.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 7,
+      "text": "Guarda-nos, ó Senhor; desta geração defende-nos para sempre.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 12,
+      "verse": 8,
+      "text": "Os ímpios andam por toda parte, quando a vileza se exalta entre os filhos dos homens.   "
+    }
+  ],
+  "text": "Salva-nos, Senhor, pois não existe mais o piedoso; os fiéis desapareceram dentre os filhos dos homens.   Cada um fala com falsidade ao seu próximo; falam com lábios lisonjeiros e coração dobre.   Corte o Senhor todos os lábios lisonjeiros e a língua que fala soberbamente,   os que dizem: Com a nossa língua prevaleceremos; os nossos lábios a nós nos pertecem; quem sobre nós é senhor?   Por causa da opressão dos pobres, e do gemido dos necessitados, levantar-me-ei agora, diz o Senhor; porei em segurança quem por ela suspira.   As palavras do Senhor são palavras puras, como prata refinada numa fornalha de barro, purificada sete vezes.   Guarda-nos, ó Senhor; desta geração defende-nos para sempre.   Os ímpios andam por toda parte, quando a vileza se exalta entre os filhos dos homens.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

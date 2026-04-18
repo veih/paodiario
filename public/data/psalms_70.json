@@ -1,0 +1,44 @@
+{
+  "reference": "Salmos 70",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 70,
+      "verse": 1,
+      "text": "Apressa-te, ó Deus, em me livrar; Senhor, apressa-te em socorrer-me.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 70,
+      "verse": 2,
+      "text": "Fiquem envergonhados e confundidos os que procuram tirar-me a vida; tornem atrás e confundam-se os que me desejam o mal.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 70,
+      "verse": 3,
+      "text": "Sejam cobertos de vergonha os que dizem: Ah! Ah!   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 70,
+      "verse": 4,
+      "text": "Folguem e alegrem-se em ti todos os que te buscam; e aqueles que amam a tua salvação digam continuamente: engrandecido seja Deus.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 70,
+      "verse": 5,
+      "text": "Eu, porém, estou aflito e necessitado; apressa-te em me valer, ó Deus. Tu és o meu amparo e o meu libertador; Senhor, não te detenhas.   "
+    }
+  ],
+  "text": "Apressa-te, ó Deus, em me livrar; Senhor, apressa-te em socorrer-me.   Fiquem envergonhados e confundidos os que procuram tirar-me a vida; tornem atrás e confundam-se os que me desejam o mal.   Sejam cobertos de vergonha os que dizem: Ah! Ah!   Folguem e alegrem-se em ti todos os que te buscam; e aqueles que amam a tua salvação digam continuamente: engrandecido seja Deus.   Eu, porém, estou aflito e necessitado; apressa-te em me valer, ó Deus. Tu és o meu amparo e o meu libertador; Senhor, não te detenhas.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

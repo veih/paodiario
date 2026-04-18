@@ -1,0 +1,65 @@
+{
+  "reference": "Salmos 124",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 1,
+      "text": "Se não fora o Senhor, que esteve ao nosso lado, ora diga Israel:   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 2,
+      "text": "Se não fora o Senhor, que esteve ao nosso lado, quando os homens se levantaram contra nós,   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 3,
+      "text": "eles nos teriam tragado vivos, quando a sua ira se acendeu contra nós;   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 4,
+      "text": "as águas nos teriam submergido, e a torrente teria passado sobre nós;   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 5,
+      "text": "sim, as águas impetuosas teriam passado sobre nós.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 6,
+      "text": "Bendito seja o Senhor, que não nos entregou, como presa, aos dentes deles.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 7,
+      "text": "Escapamos, como um pássaro, do laço dos passarinheiros; o laço quebrou-se, e nós escapamos.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 124,
+      "verse": 8,
+      "text": "O nosso socorro está no nome do Senhor, que fez os céus e a terra.   "
+    }
+  ],
+  "text": "Se não fora o Senhor, que esteve ao nosso lado, ora diga Israel:   Se não fora o Senhor, que esteve ao nosso lado, quando os homens se levantaram contra nós,   eles nos teriam tragado vivos, quando a sua ira se acendeu contra nós;   as águas nos teriam submergido, e a torrente teria passado sobre nós;   sim, as águas impetuosas teriam passado sobre nós.   Bendito seja o Senhor, que não nos entregou, como presa, aos dentes deles.   Escapamos, como um pássaro, do laço dos passarinheiros; o laço quebrou-se, e nós escapamos.   O nosso socorro está no nome do Senhor, que fez os céus e a terra.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

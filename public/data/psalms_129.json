@@ -1,0 +1,65 @@
+{
+  "reference": "Salmos 129",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 1,
+      "text": "Gravemente me angustiaram desde a minha mocidade, diga agora Israel;   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 2,
+      "text": "gravemente me angustiaram desde a minha mocidade, todavia não prevaleceram contra mim.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 3,
+      "text": "Os lavradores araram sobre as minhas costas; compridos fizeram os seus sulcos.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 4,
+      "text": "O Senhor é justo; ele corta as cordas dos ímpios.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 5,
+      "text": "Sejam envergonhados e repelidos para trás todos os que odeiam a Sião.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 6,
+      "text": "Sejam como a erva dos telhados, que seca antes de florescer;   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 7,
+      "text": "com a qual o segador não enche a mão, nem o regaço o que ata os feixes;   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 129,
+      "verse": 8,
+      "text": "nem dizem os que passam: A bênção do Senhor seja sobre vós; nós vos abençoamos em nome do Senhor.   "
+    }
+  ],
+  "text": "Gravemente me angustiaram desde a minha mocidade, diga agora Israel;   gravemente me angustiaram desde a minha mocidade, todavia não prevaleceram contra mim.   Os lavradores araram sobre as minhas costas; compridos fizeram os seus sulcos.   O Senhor é justo; ele corta as cordas dos ímpios.   Sejam envergonhados e repelidos para trás todos os que odeiam a Sião.   Sejam como a erva dos telhados, que seca antes de florescer;   com a qual o segador não enche a mão, nem o regaço o que ata os feixes;   nem dizem os que passam: A bênção do Senhor seja sobre vós; nós vos abençoamos em nome do Senhor.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

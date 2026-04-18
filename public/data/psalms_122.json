@@ -1,0 +1,72 @@
+{
+  "reference": "Salmos 122",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 1,
+      "text": "Alegrei-me quando me disseram: Vamos à casa do Senhor.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 2,
+      "text": "Os nossos pés estão parados dentro das tuas portas, ó Jerusalém!   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 3,
+      "text": "Jerusalém, que és edificada como uma cidade compacta,   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 4,
+      "text": "aonde sobem as tribos, as tribos do Senhor, como testemunho para Israel, a fim de darem graças ao nome do Senhor.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 5,
+      "text": "Pois ali estão postos os tronos de julgamento, os tronos da casa de Davi.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 6,
+      "text": "Orai pela paz de Jerusalém; prosperem aqueles que te amam.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 7,
+      "text": "Haja paz dentro de teus muros, e prosperidade dentro dos teus palácios.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 8,
+      "text": "Por causa dos meus irmãos e amigos, direi: Haja paz dentro de ti.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 122,
+      "verse": 9,
+      "text": "Por causa da casa do Senhor, nosso Deus, buscarei o teu bem.   "
+    }
+  ],
+  "text": "Alegrei-me quando me disseram: Vamos à casa do Senhor.   Os nossos pés estão parados dentro das tuas portas, ó Jerusalém!   Jerusalém, que és edificada como uma cidade compacta,   aonde sobem as tribos, as tribos do Senhor, como testemunho para Israel, a fim de darem graças ao nome do Senhor.   Pois ali estão postos os tronos de julgamento, os tronos da casa de Davi.   Orai pela paz de Jerusalém; prosperem aqueles que te amam.   Haja paz dentro de teus muros, e prosperidade dentro dos teus palácios.   Por causa dos meus irmãos e amigos, direi: Haja paz dentro de ti.   Por causa da casa do Senhor, nosso Deus, buscarei o teu bem.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

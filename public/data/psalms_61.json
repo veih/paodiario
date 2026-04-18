@@ -1,0 +1,65 @@
+{
+  "reference": "Salmos 61",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 1,
+      "text": "Ouve, ó Deus, o meu clamor; atende à minha oração.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 2,
+      "text": "Desde a extremidade da terra clamo a ti, estando abatido o meu coração; leva-me para a rocha que é mais alta do que eu.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 3,
+      "text": "Pois tu és o meu refúgio, uma torre forte contra o inimigo.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 4,
+      "text": "Deixa-me habitar no teu tabernáculo para sempre; dá que me abrigue no esconderijo das tuas asas.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 5,
+      "text": "Pois tu, ó Deus, ouviste os meus votos; deste-me a herança dos que temem o teu nome.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 6,
+      "text": "Prolongarás os dias do rei; e os seus anos serão como muitas gerações.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 7,
+      "text": "Ele permanecerá no trono diante de Deus para sempre; faze que a benignidade e a fidelidade o preservem.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 61,
+      "verse": 8,
+      "text": "Assim cantarei louvores ao teu nome perpetuamente, para pagar os meus votos de dia em dia.   "
+    }
+  ],
+  "text": "Ouve, ó Deus, o meu clamor; atende à minha oração.   Desde a extremidade da terra clamo a ti, estando abatido o meu coração; leva-me para a rocha que é mais alta do que eu.   Pois tu és o meu refúgio, uma torre forte contra o inimigo.   Deixa-me habitar no teu tabernáculo para sempre; dá que me abrigue no esconderijo das tuas asas.   Pois tu, ó Deus, ouviste os meus votos; deste-me a herança dos que temem o teu nome.   Prolongarás os dias do rei; e os seus anos serão como muitas gerações.   Ele permanecerá no trono diante de Deus para sempre; faze que a benignidade e a fidelidade o preservem.   Assim cantarei louvores ao teu nome perpetuamente, para pagar os meus votos de dia em dia.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

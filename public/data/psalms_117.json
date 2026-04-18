@@ -1,0 +1,23 @@
+{
+  "reference": "Salmos 117",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 117,
+      "verse": 1,
+      "text": "Louvai ao Senhor todas as nações, exaltai-o todos os povos.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 117,
+      "verse": 2,
+      "text": "Porque a sua benignidade é grande para conosco, e a verdade do Senhor dura para sempre. Louvai ao Senhor.   "
+    }
+  ],
+  "text": "Louvai ao Senhor todas as nações, exaltai-o todos os povos.   Porque a sua benignidade é grande para conosco, e a verdade do Senhor dura para sempre. Louvai ao Senhor.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

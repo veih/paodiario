@@ -1,0 +1,65 @@
+{
+  "reference": "Salmos 121",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 1,
+      "text": "Elevo os meus olhos para os montes; de onde me vem o socorro?   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 2,
+      "text": "O meu socorro vem do Senhor, que fez os céus e a terra.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 3,
+      "text": "Não deixará vacilar o teu pé; aquele que te guarda não dormitará.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 4,
+      "text": "Eis que não dormitará nem dormirá aquele que guarda a Israel.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 5,
+      "text": "O Senhor é quem te guarda; o Senhor é a tua sombra à tua mão direita.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 6,
+      "text": "De dia o sol não te ferirá, nem a lua de noite.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 7,
+      "text": "O Senhor te guardará de todo o mal; ele guardará a tua vida.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 121,
+      "verse": 8,
+      "text": "O Senhor guardará a tua saída e a tua entrada, desde agora e para sempre.   "
+    }
+  ],
+  "text": "Elevo os meus olhos para os montes; de onde me vem o socorro?   O meu socorro vem do Senhor, que fez os céus e a terra.   Não deixará vacilar o teu pé; aquele que te guarda não dormitará.   Eis que não dormitará nem dormirá aquele que guarda a Israel.   O Senhor é quem te guarda; o Senhor é a tua sombra à tua mão direita.   De dia o sol não te ferirá, nem a lua de noite.   O Senhor te guardará de todo o mal; ele guardará a tua vida.   O Senhor guardará a tua saída e a tua entrada, desde agora e para sempre.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}

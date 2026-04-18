@@ -1,0 +1,58 @@
+{
+  "reference": "Salmos 142",
+  "verses": [
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 142,
+      "verse": 1,
+      "text": "Com a minha voz clamo ao Senhor; com a minha voz ao Senhor suplico.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 142,
+      "verse": 2,
+      "text": "Derramo perante ele a minha queixa; diante dele exponho a minha tribulação.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 142,
+      "verse": 3,
+      "text": "Quando dentro de mim esmorece o meu espírito, então tu conheces a minha vereda; no caminho em que eu ando ocultaram-me um laço.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 142,
+      "verse": 4,
+      "text": "Olha para a minha mão direita, e vê, pois não há quem me conheça; refúgio me faltou; ninguém se interessa por mim.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 142,
+      "verse": 5,
+      "text": "A ti, ó Senhor, clamei; eu disse: Tu és o meu refúgio, o meu quinhão na terra dos viventes.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 142,
+      "verse": 6,
+      "text": "Atende ao meu clamor, porque estou muito abatido; livra-me dos meus perseguidores, porque são mais fortes do que eu.   "
+    },
+    {
+      "book_id": "PSA",
+      "book_name": "Salmos",
+      "chapter": 142,
+      "verse": 7,
+      "text": "Tira-me da prisão, para que eu louve o teu nome; os justos me rodearão, pois me farás muito bem.   "
+    }
+  ],
+  "text": "Com a minha voz clamo ao Senhor; com a minha voz ao Senhor suplico.   Derramo perante ele a minha queixa; diante dele exponho a minha tribulação.   Quando dentro de mim esmorece o meu espírito, então tu conheces a minha vereda; no caminho em que eu ando ocultaram-me um laço.   Olha para a minha mão direita, e vê, pois não há quem me conheça; refúgio me faltou; ninguém se interessa por mim.   A ti, ó Senhor, clamei; eu disse: Tu és o meu refúgio, o meu quinhão na terra dos viventes.   Atende ao meu clamor, porque estou muito abatido; livra-me dos meus perseguidores, porque são mais fortes do que eu.   Tira-me da prisão, para que eu louve o teu nome; os justos me rodearão, pois me farás muito bem.   ",
+  "translation_id": "almeida",
+  "translation_name": "João Ferreira de Almeida",
+  "translation_note": "Public Domain"
+}
