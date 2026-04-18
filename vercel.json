@@ -1,5 +1,5 @@
 {
-    "buildCommand": "npx expo export --platform web",
+    "buildCommand": "npx expo export --platform web && node -e \"const fs=require('fs'),path=require('path');const src=path.join('public','data'),dest=path.join('dist','data');if(!fs.existsSync(dest))fs.mkdirSync(dest,{recursive:true});fs.readdirSync(src).forEach(f=>fs.copyFileSync(path.join(src,f),path.join(dest,f)));console.log('Copied',fs.readdirSync(dest).length,'files');\"",
     "outputDirectory": "dist",
     "installCommand": "npm install",
     "framework": null
