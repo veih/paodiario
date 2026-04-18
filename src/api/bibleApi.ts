@@ -172,7 +172,7 @@ export const fetchChapter = async (
 ): Promise<ChapterData> => {
   try {
     // Try to get from static data first
-    const staticResponse = await fetch(`/data/${bookId}_${chapter}.json`);
+    const staticResponse = await fetch(`/data/${bookId}_${chapter}.json?t=${Date.now()}`);
     if (staticResponse.ok) {
       console.log(`Loaded ${bookId}_${chapter} from static data`);
       return await staticResponse.json() as ChapterData;

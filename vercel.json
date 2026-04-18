@@ -1,16 +1,6 @@
 {
-    "buildCommand": "npx expo export --platform web && mkdir -p dist/data && cp -r data/* dist/data/",
+    "buildCommand": "npx expo export --platform web",
     "outputDirectory": "dist",
     "installCommand": "npm install",
-    "framework": null,
-    "rewrites": [
-        {
-            "source": "/data/(.*)",
-            "destination": "/data/$1"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ]
+    "framework": null
 }
