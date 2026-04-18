@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import 'dotenv/config';
 import { sql } from '@vercel/postgres';
 import fs from 'fs';
 import path from 'path';
