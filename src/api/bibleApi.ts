@@ -1,6 +1,6 @@
 // API service for Bible data in Portuguese
-// Using static JSON files from /data/ directory
-// Falls back to external API if static data not available
+// Uses Vercel serverless API with Neon database
+// Falls back to static JSON files, then external API if needed
 
 // Type definitions
 export interface BibleTranslation {
@@ -163,25 +163,36 @@ export const getAllBooks = (): BibleBook[] => {
   return [...BIBLE_BOOKS.oldTestament, ...BIBLE_BOOKS.newTestament];
 };
 
-// Fetch a specific chapter from static data
-// Uses local /data/ JSON files first, falls back to external API if not available
+// Fetch a specific chapter from Vercel API
+// Uses serverless function with Neon database
 export const fetchChapter = async (
   bookId: string,
   chapter: number,
   translation: string = 'acf'
 ): Promise<ChapterData> => {
   try {
-    // Try to get from static data first
+    // Try Vercel API first (uses Neon database)
+    const apiResponse = await fetch(`/api/bible/${bookId}/${chapter}?translation=${translation}`);
+    if (apiResponse.ok) {
+      console.log(`Loaded ${bookId}_${chapter} from Vercel API`);
+      return await apiResponse.json() as ChapterData;
+    }
+  } catch (error) {
+    console.warn(`Vercel API failed for ${bookId}_${chapter}, trying static data`);
+  }
+
+  // Fallback to static data
+  try {
     const staticResponse = await fetch(`/data/${bookId}_${chapter}.json?t=${Date.now()}`);
     if (staticResponse.ok) {
       console.log(`Loaded ${bookId}_${chapter} from static data`);
       return await staticResponse.json() as ChapterData;
     }
   } catch (error) {
-    console.warn(`Static file not found for ${bookId}_${chapter}, falling back to API`);
+    console.warn(`Static file not found for ${bookId}_${chapter}, falling back to external API`);
   }
 
-  // Fall back to external API
+  // Final fallback to external API
   try {
     const response = await fetch(
       `https://bible-api.com/${bookId.toUpperCase()}+${chapter}?translation=almeida`
