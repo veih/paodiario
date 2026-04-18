@@ -7,19 +7,15 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "server": "ts-node server/index.ts",
-    "dev": "concurrently \"npm run server\" \"npm run web\"",
-    "build": "npx expo export --platform web && node scripts/copyDataToDist.js",
-    "db:populate": "node scripts/populateNeonDb.mjs"
+    "db:populate": "node scripts/populateNeonDb.mjs",
+    "db:schema": "node scripts/createSchema.mjs"
   },
   "dependencies": {
     "@vercel/postgres": "^0.10.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
+    "dotenv": "^16.4.7",
     "expo": "~54.0.33",
     "expo-sqlite": "~16.0.10",
     "expo-status-bar": "~3.0.9",
-    "express": "^5.2.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
@@ -27,13 +23,9 @@
   },
   "private": true,
   "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
     "@types/react": "^19.2.14",
     "@types/react-native": "^0.72.8",
     "@vercel/node": "^5.7.10",
-    "concurrently": "^9.2.1",
-    "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
 }
