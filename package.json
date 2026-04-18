@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "server": "ts-node server/index.ts",
     "dev": "concurrently \"npm run server\" \"npm run web\"",
-    "build": "npx expo export --platform web && node scripts/copyDataToDist.js"
+    "build": "npx expo export --platform web && node scripts/copyDataToDist.js",
+    "db:populate": "node scripts/populateNeonDb.mjs"
   },
   "dependencies": {
     "@vercel/postgres": "^0.10.0",
