@@ -1,6 +1,12 @@
 {
-    "buildCommand": "npx expo export --platform web && node -e \"const fs=require('fs'),path=require('path');const src=path.join(process.cwd(),'public','data'),dest=path.join(process.cwd(),'dist','data');if(fs.existsSync(src)){fs.mkdirSync(dest,{recursive:true});fs.readdirSync(src).forEach(f=>fs.copyFileSync(path.join(src,f),path.join(dest,f)));console.log('Data copied to dist/data');}\"",
+    "buildCommand": "npx expo export --platform web && node scripts/copyDataToDist.js",
     "outputDirectory": "dist",
     "installCommand": "npm install",
-    "framework": null
+    "framework": null,
+    "rewrites": [
+        {
+            "source": "/data/(.*)",
+            "destination": "/data/$1"
+        }
+    ]
 }
