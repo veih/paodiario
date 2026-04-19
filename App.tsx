@@ -142,7 +142,7 @@ export default function App(): React.ReactElement {
       setCurrentScreen("daily");
     } catch (error) {
       console.error("Error generating daily bread:", error);
-      alert("Erro ao carregar vercículos. Tente novamente.");
+      alert("Erro ao carregar versículos. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -310,7 +310,7 @@ export default function App(): React.ReactElement {
           )}
         </TouchableOpacity>
         <Text style={styles.dailyBreadDescription}>
-          Receba 5 vercículos inspirados de um livro aleatório da Bíblia
+          Receba 5 versículos inspirados de um livro aleatório da Bíblia
         </Text>
       </View>
 
