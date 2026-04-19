@@ -624,6 +624,8 @@ const styles = StyleSheet.create({
   },
   testamentColumn: {
     flex: 1,
+    borderRightWidth: 1,
+    borderRightColor: "#ecf0f1",
   },
   sectionHeader: {
     backgroundColor: "#34495e",
