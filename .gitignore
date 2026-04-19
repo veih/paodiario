@@ -42,6 +42,3 @@ yarn-error.*
 
 .vercel
 .env*.local
-
-# Prisma generated client
-generated/
