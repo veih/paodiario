@@ -2,6 +2,8 @@
 // Uses Vercel serverless API with Neon database
 // Falls back to static JSON files, then external API if needed
 
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? '/api';
+
 // Type definitions
 export interface BibleTranslation {
   id: string;
@@ -172,7 +174,7 @@ export const fetchChapter = async (
 ): Promise<ChapterData> => {
   try {
     // Try Vercel API first (uses Neon database)
-    const apiResponse = await fetch(`/api/bible/${bookId}/${chapter}?translation=${translation}`);
+    const apiResponse = await fetch(`${API_BASE_URL}/bible/${bookId}/${chapter}?translation=${translation}`);
     if (apiResponse.ok) {
       console.log(`Loaded ${bookId}_${chapter} from Vercel API`);
       return await apiResponse.json() as ChapterData;
