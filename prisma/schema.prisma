@@ -13,6 +13,8 @@ model Translation {
     abbreviation String  @db.VarChar(20)
     language     String  @db.VarChar(10)
     verses       Verse[]
+
+    @@map("translations")
 }
 
 model Book {
@@ -21,6 +23,8 @@ model Book {
     testament String  @db.VarChar(10)
     chapters  Int
     verses    Verse[]
+
+    @@map("books")
 }
 
 model Verse {
@@ -36,4 +40,5 @@ model Verse {
     @@unique([bookId, chapter, verse, translationId])
     @@index([bookId, chapter])
     @@index([translationId])
+    @@map("verses")
 }
