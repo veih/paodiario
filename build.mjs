@@ -8,9 +8,7 @@ fs.rmSync('.expo/web-build', { recursive: true, force: true });
 
 console.log('📦 Installing dependencies...');
 execSync('npm install', { stdio: 'inherit' });
-
-console.log('🔧 Generating Prisma client...');
-execSync('npx prisma generate', { stdio: 'inherit' });
+// Note: prisma generate runs automatically via postinstall
 
 console.log('🏗️ Building Expo web...');
 execSync('npx expo export --platform web', {
