@@ -27,7 +27,7 @@ import {
 import { initializeDatabase } from "./src/database/database";
 import { initializeDatabaseData } from "./src/services/syncService";
 
-type Screen = "home" | "daily";
+type Screen = "home" | "daily" | "chapters" | "reading";
 
 interface DailyVersesData {
   book: BibleBook;
@@ -41,6 +41,13 @@ interface BookSection {
   data: BibleBook[];
 }
 
+interface ReadingData {
+  book: BibleBook;
+  chapter: number;
+  verses: Verse[];
+  translation: BibleTranslation;
+}
+
 export default function App(): React.ReactElement {
   const [currentScreen, setCurrentScreen] = useState<Screen>("home");
   const [dailyVerses, setDailyVerses] = useState<DailyVersesData | null>(null);
@@ -49,6 +56,9 @@ export default function App(): React.ReactElement {
   const [showTranslationModal, setShowTranslationModal] =
     useState<boolean>(false);
   const [dbInitializing, setDbInitializing] = useState<boolean>(true);
+  const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
+  const [readingData, setReadingData] = useState<ReadingData | null>(null);
+  const [chapterLoading, setChapterLoading] = useState<boolean>(false);
 
   // Initialize database on app startup (only on native platforms)
   useEffect(() => {
@@ -190,8 +200,39 @@ export default function App(): React.ReactElement {
     </Modal>
   );
 
+  const openBook = (book: BibleBook): void => {
+    setSelectedBook(book);
+    setCurrentScreen("chapters");
+  };
+
+  const openChapter = async (
+    book: BibleBook,
+    chapter: number,
+  ): Promise<void> => {
+    setChapterLoading(true);
+    try {
+      const chapterData = await fetchChapter(
+        book.id,
+        chapter,
+        selectedTranslation,
+      );
+      setReadingData({
+        book,
+        chapter,
+        verses: chapterData.verses || [],
+        translation: currentTranslation,
+      });
+      setCurrentScreen("reading");
+    } catch (error) {
+      console.error("Error loading chapter:", error);
+      alert("Erro ao carregar capítulo. Tente novamente.");
+    } finally {
+      setChapterLoading(false);
+    }
+  };
+
   const renderBookItem: ListRenderItem<BibleBook> = ({ item }) => (
-    <TouchableOpacity style={styles.bookItem}>
+    <TouchableOpacity style={styles.bookItem} onPress={() => openBook(item)}>
       <Text style={styles.bookAbbreviation}>{item.abbreviation}</Text>
       <Text style={styles.bookName}>{item.name}</Text>
       <Text style={styles.chapterCount}>{item.chapters} cap.</Text>
@@ -307,11 +348,115 @@ export default function App(): React.ReactElement {
     </View>
   );
 
+  const renderChaptersScreen = (): React.ReactElement => {
+    if (!selectedBook) return renderHomeScreen();
+    const chapters = Array.from(
+      { length: selectedBook.chapters },
+      (_, i) => i + 1,
+    );
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity
+            onPress={() => setCurrentScreen("home")}
+            style={styles.backIcon}
+          >
+            <Text style={styles.backIconText}>← Voltar</Text>
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>{selectedBook.name}</Text>
+          <Text style={styles.headerSubtitle}>
+            {selectedBook.chapters} capítulos
+          </Text>
+        </View>
+        {chapterLoading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#e74c3c" />
+            <Text style={styles.loadingText}>Carregando capítulo...</Text>
+          </View>
+        ) : (
+          <ScrollView contentContainerStyle={styles.chaptersGrid}>
+            {chapters.map((ch) => (
+              <TouchableOpacity
+                key={ch}
+                style={styles.chapterButton}
+                onPress={() => openChapter(selectedBook, ch)}
+              >
+                <Text style={styles.chapterButtonText}>{ch}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        )}
+        <StatusBar style="light" />
+      </View>
+    );
+  };
+
+  const renderReadingScreen = (): React.ReactElement => {
+    if (!readingData) return renderHomeScreen();
+    const { book, chapter, verses, translation } = readingData;
+    const totalChapters = book.chapters;
+    const prevChapter = chapter > 1 ? chapter - 1 : null;
+    const nextChapter = chapter < totalChapters ? chapter + 1 : null;
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity
+            onPress={() => setCurrentScreen("chapters")}
+            style={styles.backIcon}
+          >
+            <Text style={styles.backIconText}>← Capítulos</Text>
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>
+            {book.name} {chapter}
+          </Text>
+          <Text style={styles.headerSubtitle}>
+            {translation.abbreviation} — {translation.name}
+          </Text>
+        </View>
+        <ScrollView style={styles.versesContainer}>
+          {verses.map((verse, index) => (
+            <View key={index} style={styles.verseCard}>
+              <Text style={styles.verseNumber}>{verse.verse}</Text>
+              <Text style={styles.verseText}>{verse.text}</Text>
+            </View>
+          ))}
+          <View style={{ height: 20 }} />
+        </ScrollView>
+        <View style={styles.bottomButtons}>
+          <TouchableOpacity
+            style={[styles.navButton, !prevChapter && styles.navButtonDisabled]}
+            onPress={() => prevChapter && openChapter(book, prevChapter)}
+            disabled={!prevChapter || chapterLoading}
+          >
+            <Text style={styles.navButtonText}>‹ Anterior</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.chapterBadge}
+            onPress={() => setCurrentScreen("chapters")}
+          >
+            <Text style={styles.chapterBadgeText}>{chapter}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.navButton, !nextChapter && styles.navButtonDisabled]}
+            onPress={() => nextChapter && openChapter(book, nextChapter)}
+            disabled={!nextChapter || chapterLoading}
+          >
+            <Text style={styles.navButtonText}>Próximo ›</Text>
+          </TouchableOpacity>
+        </View>
+        <StatusBar style="light" />
+      </View>
+    );
+  };
+
   if (dbInitializing) {
     return renderLoadingScreen();
   }
 
-  return currentScreen === "home" ? renderHomeScreen() : renderDailyScreen();
+  if (currentScreen === "home") return renderHomeScreen();
+  if (currentScreen === "daily") return renderDailyScreen();
+  if (currentScreen === "chapters") return renderChaptersScreen();
+  return renderReadingScreen();
 }
 
 const styles = StyleSheet.create({
@@ -555,6 +700,72 @@ const styles = StyleSheet.create({
   closeModalButtonText: {
     color: "#fff",
     fontSize: 16,
+    fontWeight: "bold",
+  },
+  // Chapter grid
+  chaptersGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    padding: 15,
+    gap: 10,
+    justifyContent: "flex-start",
+  },
+  chapterButton: {
+    width: 56,
+    height: 56,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 2,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: "#ecf0f1",
+  },
+  chapterButtonText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#2c3e50",
+  },
+  // Navigation
+  backIcon: {
+    alignSelf: "flex-start",
+    paddingHorizontal: 20,
+    paddingTop: 10,
+  },
+  backIconText: {
+    color: "#bdc3c7",
+    fontSize: 14,
+  },
+  navButton: {
+    flex: 1,
+    backgroundColor: "#2c3e50",
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  navButtonDisabled: {
+    backgroundColor: "#bdc3c7",
+  },
+  navButtonText: {
+    color: "#fff",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  chapterBadge: {
+    width: 56,
+    height: 56,
+    backgroundColor: "#e74c3c",
+    borderRadius: 28,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  chapterBadgeText: {
+    color: "#fff",
+    fontSize: 18,
     fontWeight: "bold",
   },
 });
