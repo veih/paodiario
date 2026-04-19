@@ -2,7 +2,7 @@
 // Uses Vercel serverless API with Neon database
 // Falls back to static JSON files, then external API if needed
 
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? '/api';
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? 'https://pao-diario.vercel.app/api';
 
 // Type definitions
 export interface BibleTranslation {

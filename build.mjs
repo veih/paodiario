@@ -13,7 +13,10 @@ console.log('🔧 Generating Prisma client...');
 execSync('npx prisma generate', { stdio: 'inherit' });
 
 console.log('🏗️ Building Expo web...');
-execSync('npx expo export --platform web', { stdio: 'inherit' });
+execSync('npx expo export --platform web', {
+    stdio: 'inherit',
+    env: { ...process.env, NODE_ENV: 'production' },
+});
 
 console.log('📁 Copying data files...');
 const src = path.join('public', 'data');
