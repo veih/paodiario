@@ -11,12 +11,14 @@
     "db:schema": "node scripts/createSchema.mjs"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.0.0",
     "@vercel/postgres": "^0.10.0",
     "dotenv": "^16.4.7",
     "expo": "~54.0.33",
     "expo-sqlite": "~16.0.10",
     "expo-status-bar": "~3.0.9",
+    "pg": "^8.20.0",
     "prisma": "^7.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",

@@ -7,6 +7,9 @@ rm -rf dist .expo/web-build
 echo "📦 Installing dependencies..."
 npm install
 
+echo "🔧 Generating Prisma client..."
+npx prisma generate
+
 echo "🏗️ Building Expo web..."
 npx expo export --platform web
 
