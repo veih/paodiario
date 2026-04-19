@@ -11,8 +11,10 @@ import {
   SectionListData,
   ListRenderItem,
   Platform,
+  Animated,
+  Dimensions,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   BIBLE_BOOKS,
   getAllBooks,
@@ -59,6 +61,8 @@ export default function App(): React.ReactElement {
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [readingData, setReadingData] = useState<ReadingData | null>(null);
   const [chapterLoading, setChapterLoading] = useState<boolean>(false);
+  const slideAnim = useRef(new Animated.Value(0)).current;
+  const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
   // Initialize database on app startup (only on native platforms)
   useEffect(() => {
@@ -208,6 +212,7 @@ export default function App(): React.ReactElement {
   const openChapter = async (
     book: BibleBook,
     chapter: number,
+    direction: "next" | "prev" | "none" = "none",
   ): Promise<void> => {
     setChapterLoading(true);
     try {
@@ -216,13 +221,34 @@ export default function App(): React.ReactElement {
         chapter,
         selectedTranslation,
       );
-      setReadingData({
+      const newData: ReadingData = {
         book,
         chapter,
         verses: chapterData.verses || [],
         translation: currentTranslation,
-      });
-      setCurrentScreen("reading");
+      };
+
+      if (direction === "none" || currentScreen !== "reading") {
+        slideAnim.setValue(0);
+        setReadingData(newData);
+        setCurrentScreen("reading");
+      } else {
+        const outTo = direction === "next" ? -SCREEN_WIDTH : SCREEN_WIDTH;
+        const inFrom = direction === "next" ? SCREEN_WIDTH : -SCREEN_WIDTH;
+        Animated.timing(slideAnim, {
+          toValue: outTo,
+          duration: 200,
+          useNativeDriver: true,
+        }).start(() => {
+          setReadingData(newData);
+          slideAnim.setValue(inFrom);
+          Animated.timing(slideAnim, {
+            toValue: 0,
+            duration: 220,
+            useNativeDriver: true,
+          }).start();
+        });
+      }
     } catch (error) {
       console.error("Error loading chapter:", error);
       alert("Erro ao carregar capítulo. Tente novamente.");
@@ -413,7 +439,12 @@ export default function App(): React.ReactElement {
             {translation.abbreviation} — {translation.name}
           </Text>
         </View>
-        <ScrollView style={styles.versesContainer}>
+        <Animated.ScrollView
+          style={[
+            styles.versesContainer,
+            { transform: [{ translateX: slideAnim }] },
+          ]}
+        >
           {verses.map((verse, index) => (
             <View key={index} style={styles.verseCard}>
               <Text style={styles.verseNumber}>{verse.verse}</Text>
@@ -421,11 +452,13 @@ export default function App(): React.ReactElement {
             </View>
           ))}
           <View style={{ height: 20 }} />
-        </ScrollView>
+        </Animated.ScrollView>
         <View style={styles.bottomButtons}>
           <TouchableOpacity
             style={[styles.navButton, !prevChapter && styles.navButtonDisabled]}
-            onPress={() => prevChapter && openChapter(book, prevChapter)}
+            onPress={() =>
+              prevChapter && openChapter(book, prevChapter, "prev")
+            }
             disabled={!prevChapter || chapterLoading}
           >
             <Text style={styles.navButtonText}>‹ Anterior</Text>
@@ -438,7 +471,9 @@ export default function App(): React.ReactElement {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.navButton, !nextChapter && styles.navButtonDisabled]}
-            onPress={() => nextChapter && openChapter(book, nextChapter)}
+            onPress={() =>
+              nextChapter && openChapter(book, nextChapter, "next")
+            }
             disabled={!nextChapter || chapterLoading}
           >
             <Text style={styles.navButtonText}>Próximo ›</Text>
