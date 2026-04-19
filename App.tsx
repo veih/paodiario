@@ -61,6 +61,7 @@ export default function App(): React.ReactElement {
   const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [readingData, setReadingData] = useState<ReadingData | null>(null);
   const [chapterLoading, setChapterLoading] = useState<boolean>(false);
+  const [showPixModal, setShowPixModal] = useState<boolean>(false);
   const slideAnim = useRef(new Animated.Value(0)).current;
   const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -271,6 +272,49 @@ export default function App(): React.ReactElement {
     <View style={styles.sectionHeader}>
       <Text style={styles.sectionTitle}>{info.section.title}</Text>
     </View>
+  );
+
+  const renderPixModal = (): React.ReactElement => (
+    <Modal
+      visible={showPixModal}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={() => setShowPixModal(false)}
+    >
+      <View style={styles.modalOverlay}>
+        <View style={styles.pixModalContent}>
+          <Text style={styles.pixModalTitle}>💚 Contribua com o App</Text>
+          <Text style={styles.pixModalText}>
+            Você poderá contribuir com a quantia de{" "}
+            <Text style={styles.pixModalHighlight}>R$ 1,00 (um real)</Text> para
+            ajudar os desenvolvedores desse app.
+          </Text>
+          <View style={styles.pixKeyBox}>
+            <Text style={styles.pixKeyLabel}>Chave Pix</Text>
+            <Text style={styles.pixKeyValue}>85999401626</Text>
+          </View>
+          <Text style={styles.pixModalFooter}>
+            A equipe agradece antecipadamente e Deus lhe abençoe para todo
+            sempre. Amém. 🙏
+          </Text>
+          <TouchableOpacity
+            style={styles.closeModalButton}
+            onPress={() => setShowPixModal(false)}
+          >
+            <Text style={styles.closeModalButtonText}>Fechar</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
+  );
+
+  const renderPixButton = (): React.ReactElement => (
+    <TouchableOpacity
+      style={styles.pixFloatingButton}
+      onPress={() => setShowPixModal(true)}
+    >
+      <Text style={styles.pixFloatingButtonText}>Pix</Text>
+    </TouchableOpacity>
   );
 
   const renderLoadingScreen = (): React.ReactElement => (
@@ -488,10 +532,19 @@ export default function App(): React.ReactElement {
     return renderLoadingScreen();
   }
 
-  if (currentScreen === "home") return renderHomeScreen();
-  if (currentScreen === "daily") return renderDailyScreen();
-  if (currentScreen === "chapters") return renderChaptersScreen();
-  return renderReadingScreen();
+  let screenContent: React.ReactElement;
+  if (currentScreen === "home") screenContent = renderHomeScreen();
+  else if (currentScreen === "daily") screenContent = renderDailyScreen();
+  else if (currentScreen === "chapters") screenContent = renderChaptersScreen();
+  else screenContent = renderReadingScreen();
+
+  return (
+    <View style={{ flex: 1 }}>
+      {screenContent}
+      {renderPixButton()}
+      {renderPixModal()}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -802,5 +855,83 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  // Pix floating button
+  pixFloatingButton: {
+    position: "absolute",
+    top: 52,
+    right: 16,
+    backgroundColor: "#27ae60",
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    borderRadius: 20,
+    zIndex: 999,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 5,
+  },
+  pixFloatingButtonText: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "bold",
+    letterSpacing: 0.5,
+  },
+  // Pix modal
+  pixModalContent: {
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingTop: 24,
+    paddingHorizontal: 24,
+    paddingBottom: 36,
+  },
+  pixModalTitle: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#2c3e50",
+    marginBottom: 14,
+    textAlign: "center",
+  },
+  pixModalText: {
+    fontSize: 16,
+    color: "#555",
+    lineHeight: 24,
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  pixModalHighlight: {
+    fontWeight: "bold",
+    color: "#27ae60",
+  },
+  pixKeyBox: {
+    backgroundColor: "#f0fdf4",
+    borderWidth: 1.5,
+    borderColor: "#27ae60",
+    borderRadius: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  pixKeyLabel: {
+    fontSize: 13,
+    color: "#7f8c8d",
+    marginBottom: 4,
+  },
+  pixKeyValue: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: "#27ae60",
+    letterSpacing: 1,
+  },
+  pixModalFooter: {
+    fontSize: 14,
+    color: "#7f8c8d",
+    textAlign: "center",
+    lineHeight: 22,
+    marginBottom: 20,
+    fontStyle: "italic",
   },
 });
