@@ -9,33 +9,6 @@ import {
 } from '../api/bibleApi';
 import { DbTranslation, DbBook, DbVerse } from '../database/types';
 
-async function fetchChapterFromServer(
-  bookId: string,
-  chapter: number,
-  translation: string = 'acf'
-): Promise<ChapterData> {
-  // Always try static data first (for Vercel deployment and local)
-  try {
-    const staticResponse = await fetch(`/data/${bookId}_${chapter}.json`);
-    if (staticResponse.ok) {
-      const data = await staticResponse.json() as ChapterData;
-      console.log(`Loaded ${bookId}_${chapter} from static data`);
-      return data;
-    }
-  } catch (error) {
-    console.warn(`Static file not found for ${bookId}_${chapter}, falling back to API:`, error);
-  }
-
-  // Fall back to external API only if static data is not available
-  const response = await fetch(
-    `https://bible-api.com/${bookId.toUpperCase()}+${chapter}?translation=almeida`
-  );
-  if (!response.ok) {
-    throw new Error('Failed to fetch chapter from API');
-  }
-  return await response.json() as ChapterData;
-}
-
 export class SyncService {
   private repository = getBibleRepository();
   private isWeb = Platform.OS === 'web';
@@ -82,9 +55,9 @@ export class SyncService {
     chapter: number,
     translationId: string
   ): Promise<ChapterData> {
-    // On web, always fetch from API directly
+    // On web, always fetch from Vercel API (uses EXPO_PUBLIC_API_URL)
     if (this.isWeb) {
-      return await fetchChapterFromServer(bookId, chapter, translationId);
+      return await fetchChapterFromApi(bookId, chapter, translationId);
     }
 
     // Check if already exists in database
