@@ -4,12 +4,10 @@ import {
   Text,
   View,
   TouchableOpacity,
-  SectionList,
   ScrollView,
   ActivityIndicator,
   Modal,
-  SectionListData,
-  ListRenderItem,
+  FlatList,
   Platform,
   Animated,
   Dimensions,
@@ -36,11 +34,6 @@ interface DailyVersesData {
   chapter: number;
   verses: Verse[];
   translation: BibleTranslation;
-}
-
-interface BookSection {
-  title: string;
-  data: BibleBook[];
 }
 
 interface ReadingData {
@@ -91,11 +84,6 @@ export default function App(): React.ReactElement {
 
   const translations = getAllTranslations();
   const currentTranslation = getTranslationById(selectedTranslation);
-
-  const sections: BookSection[] = [
-    { title: "Antigo Testamento", data: BIBLE_BOOKS.oldTestament },
-    { title: "Novo Testamento", data: BIBLE_BOOKS.newTestament },
-  ];
 
   const generateDailyBread = async (): Promise<void> => {
     setLoading(true);
@@ -258,7 +246,11 @@ export default function App(): React.ReactElement {
     }
   };
 
-  const renderBookItem: ListRenderItem<BibleBook> = ({ item }) => (
+  const renderBookItem = ({
+    item,
+  }: {
+    item: BibleBook;
+  }): React.ReactElement => (
     <TouchableOpacity style={styles.bookItem} onPress={() => openBook(item)}>
       <Text style={styles.bookAbbreviation}>{item.abbreviation}</Text>
       <Text style={styles.bookName}>{item.name}</Text>
@@ -266,11 +258,21 @@ export default function App(): React.ReactElement {
     </TouchableOpacity>
   );
 
-  const renderSectionHeader = (info: {
-    section: SectionListData<BibleBook, BookSection>;
-  }): React.ReactElement => (
-    <View style={styles.sectionHeader}>
-      <Text style={styles.sectionTitle}>{info.section.title}</Text>
+  const renderTestamentList = (
+    title: string,
+    data: BibleBook[],
+  ): React.ReactElement => (
+    <View style={styles.testamentColumn}>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>{title}</Text>
+      </View>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={renderBookItem}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.listContent}
+      />
     </View>
   );
 
@@ -358,14 +360,10 @@ export default function App(): React.ReactElement {
         </Text>
       </View>
 
-      <SectionList
-        sections={sections}
-        keyExtractor={(item) => item.id}
-        renderItem={renderBookItem}
-        renderSectionHeader={renderSectionHeader}
-        contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
-      />
+      <View style={styles.testamentsContainer}>
+        {renderTestamentList("Antigo Testamento", BIBLE_BOOKS.oldTestament)}
+        {renderTestamentList("Novo Testamento", BIBLE_BOOKS.newTestament)}
+      </View>
 
       {renderTranslationModal()}
       <StatusBar style="light" />
@@ -620,39 +618,46 @@ const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 20,
   },
+  testamentsContainer: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  testamentColumn: {
+    flex: 1,
+  },
   sectionHeader: {
     backgroundColor: "#34495e",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    marginTop: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "bold",
     color: "#fff",
+    textAlign: "center",
   },
   bookItem: {
     backgroundColor: "#fff",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ecf0f1",
   },
   bookAbbreviation: {
-    width: 40,
-    fontSize: 14,
+    width: 32,
+    fontSize: 12,
     fontWeight: "bold",
     color: "#e74c3c",
   },
   bookName: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 13,
     color: "#2c3e50",
   },
   chapterCount: {
-    fontSize: 12,
+    fontSize: 11,
     color: "#7f8c8d",
   },
   // Pão Diário styles
