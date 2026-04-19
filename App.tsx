@@ -464,9 +464,50 @@ export default function App(): React.ReactElement {
   const renderReadingScreen = (): React.ReactElement => {
     if (!readingData) return renderHomeScreen();
     const { book, chapter, verses, translation } = readingData;
-    const totalChapters = book.chapters;
+    const allBooks = getAllBooks();
+    const bookIndex = allBooks.findIndex((b) => b.id === book.id);
+
+    // Within-book navigation
     const prevChapter = chapter > 1 ? chapter - 1 : null;
-    const nextChapter = chapter < totalChapters ? chapter + 1 : null;
+    const nextChapter = chapter < book.chapters ? chapter + 1 : null;
+
+    // Cross-book navigation (when at first/last chapter of a book)
+    const prevBook = bookIndex > 0 ? allBooks[bookIndex - 1] : null;
+    const nextBook =
+      bookIndex < allBooks.length - 1 ? allBooks[bookIndex + 1] : null;
+
+    const handleNext = (): void => {
+      if (nextChapter) {
+        openChapter(book, nextChapter, "next");
+      } else if (nextBook) {
+        setSelectedBook(nextBook);
+        openChapter(nextBook, 1, "next");
+      }
+    };
+
+    const handlePrev = (): void => {
+      if (prevChapter) {
+        openChapter(book, prevChapter, "prev");
+      } else if (prevBook) {
+        setSelectedBook(prevBook);
+        openChapter(prevBook, prevBook.chapters, "prev");
+      }
+    };
+
+    const canGoNext = nextChapter !== null || nextBook !== null;
+    const canGoPrev = prevChapter !== null || prevBook !== null;
+
+    const nextLabel = nextChapter
+      ? "Próximo ›"
+      : nextBook
+        ? `${nextBook.abbreviation} ›`
+        : "Próximo ›";
+    const prevLabel = prevChapter
+      ? "‹ Anterior"
+      : prevBook
+        ? `‹ ${prevBook.abbreviation}`
+        : "‹ Anterior";
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -499,13 +540,11 @@ export default function App(): React.ReactElement {
         </Animated.ScrollView>
         <View style={styles.bottomButtons}>
           <TouchableOpacity
-            style={[styles.navButton, !prevChapter && styles.navButtonDisabled]}
-            onPress={() =>
-              prevChapter && openChapter(book, prevChapter, "prev")
-            }
-            disabled={!prevChapter || chapterLoading}
+            style={[styles.navButton, !canGoPrev && styles.navButtonDisabled]}
+            onPress={handlePrev}
+            disabled={!canGoPrev || chapterLoading}
           >
-            <Text style={styles.navButtonText}>‹ Anterior</Text>
+            <Text style={styles.navButtonText}>{prevLabel}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.chapterBadge}
@@ -514,13 +553,11 @@ export default function App(): React.ReactElement {
             <Text style={styles.chapterBadgeText}>{chapter}</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.navButton, !nextChapter && styles.navButtonDisabled]}
-            onPress={() =>
-              nextChapter && openChapter(book, nextChapter, "next")
-            }
-            disabled={!nextChapter || chapterLoading}
+            style={[styles.navButton, !canGoNext && styles.navButtonDisabled]}
+            onPress={handleNext}
+            disabled={!canGoNext || chapterLoading}
           >
-            <Text style={styles.navButtonText}>Próximo ›</Text>
+            <Text style={styles.navButtonText}>{nextLabel}</Text>
           </TouchableOpacity>
         </View>
         <StatusBar style="light" />
