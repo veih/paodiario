@@ -1,9 +1,11 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
-const prisma = new PrismaClient({ adapter });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+  max: 1,
+});
 
 export default async function handler(
   request: VercelRequest,
@@ -13,46 +15,38 @@ export default async function handler(
   const translation = (request.query.translation as string) || 'acf';
 
   try {
-    // Try to get from database using Prisma
-    const verses = await prisma.verse.findMany({
-      where: {
-        bookId: book as string,
-        chapter: parseInt(chapter as string),
-        translationId: translation,
-      },
-      include: {
-        book: true,
-      },
-      orderBy: {
-        verse: 'asc',
-      },
-    });
+    const result = await pool.query(
+      `SELECT v.verse, v.text, b.name as book_name
+       FROM verses v
+       JOIN books b ON b.id = v.book_id
+       WHERE v.book_id = $1
+         AND v.chapter = $2
+         AND v.translation_id = $3
+       ORDER BY v.verse ASC`,
+      [book, parseInt(chapter as string), translation]
+    );
 
-    if (verses.length === 0) {
-      // If not in database, fetch from external API
+    if (result.rows.length === 0) {
       const apiResponse = await fetch(
         `https://bible-api.com/${(book as string).toUpperCase()}+${chapter}?translation=almeida`
       );
-      
       if (!apiResponse.ok) {
         return response.status(404).json({ error: 'Chapter not found' });
       }
-
-      const data = await apiResponse.json();
-      return response.status(200).json(data);
+      return response.status(200).json(await apiResponse.json());
     }
 
-    // Format response from database
-    const formattedVerses = verses.map((v) => ({
-      book_id: v.bookId.toUpperCase(),
-      book_name: v.book.name,
+    const bookName = result.rows[0].book_name;
+    const formattedVerses = result.rows.map((v) => ({
+      book_id: (book as string).toUpperCase(),
+      book_name: bookName,
       chapter: parseInt(chapter as string),
       verse: v.verse,
       text: v.text,
     }));
 
     return response.status(200).json({
-      reference: `${verses[0].book.name} ${chapter}`,
+      reference: `${bookName} ${chapter}`,
       verses: formattedVerses,
       text: formattedVerses.map((v) => v.text).join(' '),
       translation_id: translation,
@@ -61,23 +55,16 @@ export default async function handler(
     });
   } catch (error) {
     console.error('Database error:', error);
-    
-    // Fallback to external API
     try {
       const apiResponse = await fetch(
         `https://bible-api.com/${(book as string).toUpperCase()}+${chapter}?translation=almeida`
       );
-      
       if (!apiResponse.ok) {
         return response.status(500).json({ error: 'Failed to fetch chapter' });
       }
-
-      const data = await apiResponse.json();
-      return response.status(200).json(data);
-    } catch (apiError) {
+      return response.status(200).json(await apiResponse.json());
+    } catch {
       return response.status(500).json({ error: 'Failed to fetch chapter' });
     }
-  } finally {
-    await prisma.$disconnect();
   }
 }
