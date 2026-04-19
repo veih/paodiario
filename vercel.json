@@ -3,6 +3,11 @@
     "outputDirectory": "dist",
     "installCommand": "npm install",
     "framework": null,
+    "functions": {
+        "api/**/*.ts": {
+            "includeFiles": "node_modules/.prisma/client/**"
+        }
+    },
     "rewrites": [
         {
             "source": "/api/(.*)",
