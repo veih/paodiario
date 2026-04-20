@@ -12,7 +12,7 @@ import {
   Animated,
   Dimensions,
 } from "react-native";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   BIBLE_BOOKS,
   getAllBooks,
@@ -43,6 +43,85 @@ interface ReadingData {
   translation: BibleTranslation;
 }
 
+// Snow flake component
+const FLAKE_COUNT = 20;
+
+interface Flake {
+  id: number;
+  x: number;
+  size: number;
+  duration: number;
+  delay: number;
+  opacity: number;
+}
+
+function SnowEffect(): React.ReactElement {
+  // Inject CSS keyframe on web
+  useEffect(() => {
+    if (Platform.OS !== "web") return;
+    const styleId = "snowfall-keyframes";
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.innerHTML = `@keyframes snowfall { from { transform: translateY(-10px); } to { transform: translateY(220px); } }`;
+      document.head.appendChild(style);
+    }
+  }, []);
+  const flakes = useMemo<Flake[]>(
+    () =>
+      Array.from({ length: FLAKE_COUNT }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        size: Math.random() * 5 + 3,
+        duration: Math.random() * 3 + 2,
+        delay: Math.random() * 5,
+        opacity: Math.random() * 0.5 + 0.3,
+      })),
+    [],
+  );
+
+  return (
+    <View
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: "hidden",
+        borderRadius: 12,
+        pointerEvents: "none",
+        zIndex: 1,
+      }}
+    >
+      {flakes.map((flake) => (
+        <View
+          key={flake.id}
+          style={{
+            position: "absolute",
+            left: `${flake.x}%`,
+            top: -10,
+            width: flake.size,
+            height: flake.size,
+            borderRadius: flake.size / 2,
+            backgroundColor: "#c0c0c0",
+            opacity: flake.opacity,
+            shadowColor: "#c0c0c0",
+            shadowRadius: 2,
+            shadowOpacity: 0.8,
+            // @ts-expect-error web-only CSS animation
+            animationName: "snowfall",
+            animationDuration: `${flake.duration}s`,
+            animationDelay: `${flake.delay}s`,
+            animationIterationCount: "infinite",
+            animationTimingFunction: "linear",
+          }}
+        />
+      ))}
+    </View>
+  );
+}
+
 export default function App(): React.ReactElement {
   const [currentScreen, setCurrentScreen] = useState<Screen>("home");
   const [dailyVerses, setDailyVerses] = useState<DailyVersesData | null>(null);
@@ -55,6 +134,9 @@ export default function App(): React.ReactElement {
   const [readingData, setReadingData] = useState<ReadingData | null>(null);
   const [chapterLoading, setChapterLoading] = useState<boolean>(false);
   const [showPixModal, setShowPixModal] = useState<boolean>(false);
+  const [selectedTestament, setSelectedTestament] = useState<
+    "old" | "new" | null
+  >(null);
   const slideAnim = useRef(new Animated.Value(0)).current;
   const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -258,21 +340,57 @@ export default function App(): React.ReactElement {
     </TouchableOpacity>
   );
 
-  const renderTestamentList = (
-    title: string,
-    data: BibleBook[],
-  ): React.ReactElement => (
-    <View style={styles.testamentColumn}>
-      <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>{title}</Text>
-      </View>
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={renderBookItem}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.listContent}
-      />
+  const renderTestamentTabs = (): React.ReactElement => (
+    <View style={styles.testamentTabsRow}>
+      <TouchableOpacity
+        style={[
+          styles.testamentTab,
+          selectedTestament === "old" && styles.testamentTabActive,
+        ]}
+        onPress={() => setSelectedTestament("old")}
+      >
+        <Text
+          style={[
+            styles.testamentTabText,
+            selectedTestament === "old" && styles.testamentTabTextActive,
+          ]}
+        >
+          Antigo Testamento
+        </Text>
+        <Text
+          style={[
+            styles.testamentTabCount,
+            selectedTestament === "old" && styles.testamentTabTextActive,
+          ]}
+        >
+          {BIBLE_BOOKS.oldTestament.length} livros
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[
+          styles.testamentTab,
+          selectedTestament === "new" && styles.testamentTabActive,
+        ]}
+        onPress={() => setSelectedTestament("new")}
+      >
+        <Text
+          style={[
+            styles.testamentTabText,
+            selectedTestament === "new" && styles.testamentTabTextActive,
+          ]}
+        >
+          Novo Testamento
+        </Text>
+        <Text
+          style={[
+            styles.testamentTabCount,
+            selectedTestament === "new" && styles.testamentTabTextActive,
+          ]}
+        >
+          {BIBLE_BOOKS.newTestament.length} livros
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -334,6 +452,7 @@ export default function App(): React.ReactElement {
       </View>
 
       <View style={styles.dailyBreadContainer}>
+        <SnowEffect />
         <TouchableOpacity
           style={styles.translationSelector}
           onPress={() => setShowTranslationModal(true)}
@@ -360,10 +479,21 @@ export default function App(): React.ReactElement {
         </Text>
       </View>
 
-      <View style={styles.testamentsContainer}>
-        {renderTestamentList("Antigo Testamento", BIBLE_BOOKS.oldTestament)}
-        {renderTestamentList("Novo Testamento", BIBLE_BOOKS.newTestament)}
-      </View>
+      {renderTestamentTabs()}
+
+      {selectedTestament !== null && (
+        <FlatList
+          data={
+            selectedTestament === "old"
+              ? BIBLE_BOOKS.oldTestament
+              : BIBLE_BOOKS.newTestament
+          }
+          keyExtractor={(item) => item.id}
+          renderItem={renderBookItem}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.listContent}
+        />
+      )}
 
       {renderTranslationModal()}
       <StatusBar style="light" />
@@ -618,14 +748,35 @@ const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 20,
   },
-  testamentsContainer: {
-    flex: 1,
+  testamentTabsRow: {
     flexDirection: "row",
+    backgroundColor: "#2c3e50",
+    paddingHorizontal: 2,
+    paddingVertical: 2,
+    gap: 4,
   },
-  testamentColumn: {
+  testamentTab: {
     flex: 1,
-    borderRightWidth: 1,
-    borderRightColor: "#ecf0f1",
+    backgroundColor: "#3d5166",
+    borderRadius: 6,
+    paddingVertical: 2,
+    alignItems: "center",
+  },
+  testamentTabActive: {
+    backgroundColor: "#2ecc71",
+  },
+  testamentTabText: {
+    fontSize: 13,
+    fontWeight: "bold",
+    color: "#bdc3c7",
+  },
+  testamentTabTextActive: {
+    color: "#fff",
+  },
+  testamentTabCount: {
+    fontSize: 11,
+    color: "#bdc3c7",
+    marginTop: 2,
   },
   sectionHeader: {
     backgroundColor: "#34495e",
@@ -642,24 +793,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#ecf0f1",
   },
   bookAbbreviation: {
-    width: 32,
-    fontSize: 12,
+    width: 40,
+    fontSize: 13,
     fontWeight: "bold",
     color: "#e74c3c",
   },
   bookName: {
     flex: 1,
-    fontSize: 13,
+    fontSize: 15,
     color: "#2c3e50",
   },
   chapterCount: {
-    fontSize: 11,
+    fontSize: 12,
     color: "#7f8c8d",
   },
   // Pão Diário styles
@@ -674,6 +825,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    overflow: "hidden",
   },
   translationSelector: {
     width: "100%",
