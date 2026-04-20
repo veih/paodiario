@@ -134,6 +134,7 @@ export default function App(): React.ReactElement {
   const [readingData, setReadingData] = useState<ReadingData | null>(null);
   const [chapterLoading, setChapterLoading] = useState<boolean>(false);
   const [showPixModal, setShowPixModal] = useState<boolean>(false);
+  const [pixCopied, setPixCopied] = useState<boolean>(false);
   const [selectedTestament, setSelectedTestament] = useState<
     "old" | "new" | null
   >(null);
@@ -275,6 +276,19 @@ export default function App(): React.ReactElement {
     </Modal>
   );
 
+  const copyPixKey = (): void => {
+    const key = "85999401626";
+    if (Platform.OS === "web") {
+      navigator.clipboard.writeText(key).then(() => {
+        setPixCopied(true);
+        setTimeout(() => setPixCopied(false), 2000);
+      });
+    } else {
+      setPixCopied(true);
+      setTimeout(() => setPixCopied(false), 2000);
+    }
+  };
+
   const openBook = (book: BibleBook): void => {
     setSelectedBook(book);
     setCurrentScreen("chapters");
@@ -409,10 +423,19 @@ export default function App(): React.ReactElement {
             <Text style={styles.pixModalHighlight}>R$ 1,00 (um real)</Text> para
             ajudar os desenvolvedores desse app.
           </Text>
-          <View style={styles.pixKeyBox}>
+          <TouchableOpacity
+            style={styles.pixKeyBox}
+            onPress={copyPixKey}
+            activeOpacity={0.7}
+          >
             <Text style={styles.pixKeyLabel}>Chave Pix</Text>
             <Text style={styles.pixKeyValue}>85999401626</Text>
-          </View>
+            <Text
+              style={[styles.pixCopyHint, pixCopied && { color: "#27ae60" }]}
+            >
+              {pixCopied ? "✓ Copiado!" : "Toque para copiar"}
+            </Text>
+          </TouchableOpacity>
           <Text style={styles.pixModalFooter}>
             A equipe agradece antecipadamente e Deus lhe abençoe para todo
             sempre. Amém. 🙏
@@ -1121,6 +1144,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#27ae60",
     letterSpacing: 1,
+  },
+  pixCopyHint: {
+    fontSize: 11,
+    color: "#95a5a6",
+    marginTop: 4,
   },
   pixModalFooter: {
     fontSize: 14,
