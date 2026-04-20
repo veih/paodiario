@@ -11,6 +11,7 @@ import {
   Platform,
   Animated,
   Dimensions,
+  Linking,
 } from "react-native";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
@@ -27,7 +28,7 @@ import {
 import { initializeDatabase } from "./src/database/database";
 import { initializeDatabaseData } from "./src/services/syncService";
 
-type Screen = "home" | "daily" | "chapters" | "reading";
+type Screen = "home" | "daily" | "chapters" | "reading" | "hymnal";
 
 interface DailyVersesData {
   book: BibleBook;
@@ -135,6 +136,9 @@ export default function App(): React.ReactElement {
   const [chapterLoading, setChapterLoading] = useState<boolean>(false);
   const [showPixModal, setShowPixModal] = useState<boolean>(false);
   const [pixCopied, setPixCopied] = useState<boolean>(false);
+  const [selectedHymnal, setSelectedHymnal] = useState<
+    "adventista" | "batista" | "presbiteriana"
+  >("adventista");
   const [selectedTestament, setSelectedTestament] = useState<
     "old" | "new" | null
   >(null);
@@ -504,6 +508,14 @@ export default function App(): React.ReactElement {
 
       {renderTestamentTabs()}
 
+      <TouchableOpacity
+        style={styles.hymnalButton}
+        onPress={() => setCurrentScreen("hymnal")}
+      >
+        <Text style={styles.hymnalButtonText}>Hinários</Text>
+        <Text style={styles.hymnalButtonSub}>Ouvir no Spotify</Text>
+      </TouchableOpacity>
+
       {selectedTestament !== null && (
         <FlatList
           data={
@@ -716,6 +728,118 @@ export default function App(): React.ReactElement {
     );
   };
 
+  const HYMNALS = {
+    adventista: {
+      name: "Hinário Adventista",
+      subtitle: "Novo Hinário 2022",
+      playlistId: "1AtG9Fxi0iiJPXGP1dPHxC",
+    },
+    batista: {
+      name: "Cantor Cristão",
+      subtitle: "Hinário Batista",
+      playlistId: "1e5tZNxeaM2A8PCAEXVfjW",
+    },
+    presbiteriana: {
+      name: "Novo Cântico",
+      subtitle: "Hinário Presbiteriano",
+      playlistId: "28tB6P9IUgjouPX5wWAcDz",
+    },
+  };
+
+  const currentHymnal = HYMNALS[selectedHymnal];
+  const hymnalSpotifyUrl = `https://open.spotify.com/playlist/${currentHymnal.playlistId}`;
+  const hymnalEmbedUrl = `https://open.spotify.com/embed/playlist/${currentHymnal.playlistId}?utm_source=generator&theme=0`;
+
+  const renderHymnalScreen = (): React.ReactElement => (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => setCurrentScreen("home")}
+          style={styles.backIcon}
+        >
+          <Text style={styles.backIconText}>← Voltar</Text>
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>{currentHymnal.name}</Text>
+        <Text style={styles.headerSubtitle}>{currentHymnal.subtitle}</Text>
+      </View>
+      <View style={styles.hymnalTabsRow}>
+        <TouchableOpacity
+          style={[
+            styles.hymnalTab,
+            selectedHymnal === "adventista" && styles.hymnalTabActive,
+          ]}
+          onPress={() => setSelectedHymnal("adventista")}
+        >
+          <Text
+            style={[
+              styles.hymnalTabText,
+              selectedHymnal === "adventista" && styles.hymnalTabTextActive,
+            ]}
+          >
+            Adventista
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.hymnalTab,
+            selectedHymnal === "batista" && styles.hymnalTabActive,
+          ]}
+          onPress={() => setSelectedHymnal("batista")}
+        >
+          <Text
+            style={[
+              styles.hymnalTabText,
+              selectedHymnal === "batista" && styles.hymnalTabTextActive,
+            ]}
+          >
+            Cantor Cristão
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.hymnalTab,
+            selectedHymnal === "presbiteriana" && styles.hymnalTabActive,
+          ]}
+          onPress={() => setSelectedHymnal("presbiteriana")}
+        >
+          <Text
+            style={[
+              styles.hymnalTabText,
+              selectedHymnal === "presbiteriana" && styles.hymnalTabTextActive,
+            ]}
+          >
+            Novo Cântico
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.hymnalContainer}>
+        {Platform.OS === "web" ? (
+          <iframe
+            src={hymnalEmbedUrl}
+            width="100%"
+            height="100%"
+            style={{ border: 0, borderRadius: 12 }}
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          />
+        ) : (
+          <View style={styles.hymnalFallback}>
+            <Text style={styles.hymnalFallbackText}>
+              Abra o Hinário no Spotify
+            </Text>
+            <TouchableOpacity
+              style={styles.hymnalFallbackButton}
+              onPress={() => Linking.openURL(hymnalSpotifyUrl)}
+            >
+              <Text style={styles.hymnalFallbackButtonText}>Abrir Spotify</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+      <StatusBar style="light" />
+    </View>
+  );
+
   if (dbInitializing) {
     return renderLoadingScreen();
   }
@@ -724,6 +848,7 @@ export default function App(): React.ReactElement {
   if (currentScreen === "home") screenContent = renderHomeScreen();
   else if (currentScreen === "daily") screenContent = renderDailyScreen();
   else if (currentScreen === "chapters") screenContent = renderChaptersScreen();
+  else if (currentScreen === "hymnal") screenContent = renderHymnalScreen();
   else screenContent = renderReadingScreen();
 
   return (
@@ -1157,5 +1282,83 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginBottom: 20,
     fontStyle: "italic",
+  },
+  // Hymnal button
+  hymnalButton: {
+    backgroundColor: "#1DB954",
+    marginHorizontal: 12,
+    marginVertical: 8,
+    borderRadius: 10,
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+  hymnalButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  hymnalButtonSub: {
+    color: "rgba(255,255,255,0.8)",
+    fontSize: 12,
+    marginTop: 2,
+  },
+  // Hymnal tabs
+  hymnalTabsRow: {
+    flexDirection: "row",
+    backgroundColor: "#2c3e50",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    gap: 8,
+  },
+  hymnalTab: {
+    flex: 1,
+    backgroundColor: "#3d5166",
+    borderRadius: 8,
+    paddingVertical: 10,
+    alignItems: "center",
+  },
+  hymnalTabActive: {
+    backgroundColor: "#1DB954",
+  },
+  hymnalTabText: {
+    fontSize: 13,
+    fontWeight: "bold",
+    color: "#bdc3c7",
+  },
+  hymnalTabTextActive: {
+    color: "#fff",
+  },
+  // Hymnal screen
+  hymnalContainer: {
+    flex: 1,
+    margin: 12,
+    borderRadius: 12,
+    overflow: "hidden",
+    backgroundColor: "#121212",
+  },
+  hymnalFallback: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#121212",
+    borderRadius: 12,
+    padding: 20,
+  },
+  hymnalFallbackText: {
+    color: "#fff",
+    fontSize: 18,
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  hymnalFallbackButton: {
+    backgroundColor: "#1DB954",
+    paddingVertical: 14,
+    paddingHorizontal: 30,
+    borderRadius: 25,
+  },
+  hymnalFallbackButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
